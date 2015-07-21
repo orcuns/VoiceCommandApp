@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 
 public class MainActivity extends Activity implements View.OnClickListener {
@@ -44,11 +45,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
     }
 
     public void startVoiceRecognitionActivity() {
+
+        String myLanguage = "tr-TR"; // Locale.forLanguageTag("tr-TR").toString();
+
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
-                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-        intent.putExtra(RecognizerIntent.EXTRA_PROMPT,
-                "Speech recognition demo");
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Speech recognition demo");
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, myLanguage);
         startActivityForResult(intent, VOICE_RECOGNITION_REQUEST_CODE);
     }
 
